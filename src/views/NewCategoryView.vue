@@ -21,25 +21,25 @@
         <b-button type="submit" variant="primary">Submit</b-button>
         <b-button type="reset" variant="danger">Reset</b-button>
       </b-form>
-      <Modal :modalShow="modalShow" :text="modalText" />
+      <Toast :variant="variant" :text="toastText"></Toast>
     </div>
   </div>
 </template>
 
 <script>
 import Treeselect from '@riophae/vue-treeselect';
-import Modal from '@/components/ModalComponent.vue';
 import '@riophae/vue-treeselect/dist/vue-treeselect.css';
+import Toast from '@/components/ToastComponent.vue';
 
 export default {
   name: 'NewCategoryView',
-  components: { Treeselect, Modal },
+  components: { Treeselect, Toast },
   data() {
     return {
       show: true,
       defaultExpandLevel: 3,
-      modalText: '',
-      modalShow: false,
+      toastText: '',
+      variant: '',
       category: {
         name: '',
         parentName: 'Top level',
@@ -98,11 +98,14 @@ export default {
       if (errorCode === '') {
         this.$store.commit('addCategory', tempCategory);
         this.addCategoryOption(tempCategory);
+        this.toastText = `Category ${tempCategory.name} created successfully`;
+        this.variant = 'success';
+        this.$bvToast.show('vue-toast');
       } else {
         // Fix the modal
-        this.modalText = errorCode;
-        this.modalShow = true;
-        console.log(errorCode);
+        this.toastText = errorCode;
+        this.variant = 'danger';
+        this.$bvToast.show('vue-toast');
       }
     },
     addCategoryOption(category) {
@@ -125,7 +128,6 @@ export default {
     },
     updateModalProp(value) {
       this.modalShow = value;
-      console.log(value);
     },
   },
 };

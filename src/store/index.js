@@ -7,8 +7,8 @@ export default new Vuex.Store({
   state: {
     users: [
       {
-        name: 'Vard',
-        lastName: 'Pav',
+        name: 'Vardas',
+        lastName: 'Pavarde',
         email: 'mail@gml.com',
         password: 'passs',
         age: '18',
@@ -16,10 +16,10 @@ export default new Vuex.Store({
         category: 'A',
       },
       {
-        name: 'Eeu',
-        lastName: 'Ver',
-        email: 'mail@gml.com',
-        password: 'passs',
+        name: 'Name',
+        lastName: 'Lastname',
+        email: 'mail@gmail.com',
+        password: 'secret',
         age: '20',
         gender: 'Female',
         category: 'B',

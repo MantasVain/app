@@ -1,9 +1,9 @@
 <template>
   <div id="app">
+    <NavBar />
     <div class="container--fluid">
       <Header />
-      <NavBar />
-      <router-view class="routerview" />
+      <router-view class="mainContent"/>
       <Footer />
     </div>
   </div>
@@ -29,8 +29,8 @@ export default {
 <style lang="scss">
 body,
 html {
+  margin: 0;
   height: 100%;
-  width: 100%;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -51,9 +51,11 @@ nav {
     }
   }
 }
-.container {
+.container--fluid {
   height: 100vh;
-  padding: 20px;
+}
+.container{
+  height: 100vh;
 }
 .header {
   min-height: 60px;

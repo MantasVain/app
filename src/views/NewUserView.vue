@@ -43,7 +43,9 @@
           <b-form-input
             id="input-5"
             v-model="user.age"
+            type="number"
             placeholder="Enter your age"
+            :max="99"
             required
           ></b-form-input>
         </b-form-group>
@@ -70,14 +72,20 @@
         <b-button type="submit" variant="primary">Submit</b-button>
         <b-button type="reset" variant="danger">Reset</b-button>
       </b-form>
+      <Toast :variant="variant" :text="toastText"></Toast>
     </div>
   </div>
 </template>
 <script>
+import Toast from '@/components/ToastComponent.vue';
+
 export default {
+  components: { Toast },
   name: 'newUser',
   data() {
     return {
+      toastText: '',
+      variant: '',
       user: {
         name: '',
         lastName: '',
@@ -107,6 +115,9 @@ export default {
     onSubmit(event) {
       event.preventDefault();
       this.$store.commit('addUsers', { ...this.user });
+      this.toastText = `User ${this.user.name} created successfully`;
+      this.variant = 'success';
+      this.$bvToast.show('vue-toast');
       this.resetForm();
     },
     onReset(event) {
